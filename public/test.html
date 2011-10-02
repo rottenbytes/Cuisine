@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Cuisine</title>
+<link rel="stylesheet" href="bootstrap.min.css">
+
+ <!-- Le javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="js/bootstrap-modal.js"></script>
+<script src="js/bootstrap-alerts.js"></script>
+<script src="js/bootstrap-twipsy.js"></script>
+<script src="js/bootstrap-popover.js"></script>
+<script src="js/bootstrap-dropdown.js"></script>
+<script src="js/bootstrap-scrollspy.js"></script>
+<script src="js/bootstrap-tabs.js"></script>
+
+    <!-- Le styles -->
+<link href="bootstrap.css" rel="stylesheet">
+<link href="docs/assets/css/docs.css" rel="stylesheet">
+<link href="docs/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Cuisine</a>
+          <ul class="nav">
+            <li class="active"><a href="#">What's hot</a></li>
+            <li><a href="#search">Search</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+<!-- node 1 -->
+<div id="modal-from-dom1" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">&times;</a>
+    <h3>Details for node 2</h3>
+  </div>
+  <div class="modal-body">
+    <p>foo</p>
+    <p>bar</p>
+    <p>baz</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn primary close">OK</a>
+  </div>
+</div>
+
+<!-- node 2 --> 
+<div id="modal-from-dom2" class="modal hide fade"> 
+  <div class="modal-header"> 
+    <!-- <a href="#" class="close">&times;</a>  -->
+    <h3>Details for eqx-infra1.fotolia.loc</h3> 
+  </div> 
+  <div class="modal-body">
+    <h4>Modified resources :</h4>
+    <p>
+    <ul>
+    <li>/etc/collectd/collectd.conf
+    <li>/etc/collectd/filters.conf
+    </ul>
+    </p>
+    <h4>Run duration : 45.8s</h4>
+  </div> 
+  <div class="modal-footer"> 
+    <a href="#" class="btn alert close">OK</a> 
+  </div> 
+</div> 
+
+      <div class="content">
+
+        <div class="page-header">
+          <h1>Cuisine <small>The chef dashboard</small></h1>
+        </div>
+
+        <div class="row">
+          <div class="span10">
+            <h2>Latest runs</h2>
+            <ul>
+            <li> eqx-search1.fotolia.loc (3 minutes ago) - <a data-controls-modal="modal-from-dom1" data-backdrop="true" data-keyboard="true" class="danger" href="#">details</a>
+              <li> eqx-infra1.fotolia.loc (7 minutes ago) - <a data-controls-modal="modal-from-dom2" data-backdrop="true" data-keyboard="true" class="danger" href="#">details</a>
+            </ul>
+          </div>
+
+          <div class="span4">
+            <h3>Various statistics</h3>
+            <li> Average run time : XXs
+            <li> Foo
+            <li> Bar
+          </div>
+
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Rottenbytes Corp 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+</body>
+</html>
