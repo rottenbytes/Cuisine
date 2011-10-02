@@ -4,7 +4,7 @@ require "tire"
 
 s=Tire.search do
   query { string "nodename:*" }
-  sort { by "start_time", 'desc' }
+#  sort { by "start_time", 'desc' }
   
 end
 

@@ -27,67 +27,14 @@
           %a{:class => "brand", :href => "#"} Cuisine
           %ul{:class => "nav"}
             %li{:class => "active"}
-              %a{:href => "#"} Hot stuff
+              %a{:href => "/"} Hot stuff
             %li
-              %a{:href => "#search"} Search
+              %a{:href => "/search"} Search
             %li
-              %a{:href => "#about"} About
+              %a{:href => "/about"} About
               
       %div{:class => "container"}
-        /node 1
-        %div{:id => "modal-from-dom1", :class => "modal hide fade"}
-          %div{:class => "modal-header"}
-            %h3 Details for eqx-search1.fotolia.loc 
-          %div{:class => "modal-body"}
-            %h4 
-              Modified resources :
-              %p
-                %li
-                  \/etc/collectd/collectd.conf
-                %li
-                  \/etc/collectd/filters.conf
-            %h4
-              Run duration : 45.8s
-          %div{:class => "modal-footer"}
-            %a{:href => "#", :class => "btn alert close"} OK
-        
-        /node 2
-        %div{:id => "modal-from-dom2", :class => "modal hide fade"}
-          %div{:class => "modal-header"}
-            %h3 Details for eqx-infra1.fotolia.loc 
-          %div{:class => "modal-body"}
-            %h4 
-              Modified resources :
-              %p
-                %ul
-                  %li
-                    \/etc/collectd/collectd.conf
-                  %li
-                    \/etc/collectd/filters.conf
-            %h4
-              Run duration : 45.8s
-          %div{:class => "modal-footer"}
-            %a{:href => "#", :class => "btn alert close"} OK
-        
-        
-        %div{:class => "content"}            
-          %div{:class => "row"}
-            %div{:class => "span10"}
-              %h2
-                Latest runs
-              %li
-                eqx-search1 (3 minutes ago) - |
-                %a{:"data-controls-modal" => "modal-from-dom1", :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
-              %li
-                eqx-infra1 (7 minutes ago) - |
-                %a{:"data-controls-modal" => "modal-from-dom2", :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
-            
-            %div{:class => "span4"}
-              %h3
-                Various statistics
-              %li foo
-              %li bar
-              %li baz
-              
-        %footer
-          %p &copy; Rottenbytes 2011
+        = yield
+
+      %footer
+        %p{:align => "center"} &copy; Rottenbytes 2011

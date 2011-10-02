@@ -3,6 +3,7 @@
 require "rubygems"
 require "sinatra"
 require "tire"
+require "cuisine/elasticsearch"
 
 __DIR__ = File.expand_path(File.dirname(__FILE__))
 
@@ -23,6 +24,16 @@ end
 
 
 get "/" do
-
+  @latest = search_limited(15)
+  puts @latest.inspect
+  
   haml :index
+end
+
+get "/search" do
+  haml :search
+end
+
+get "/about" do
+  haml :about
 end
