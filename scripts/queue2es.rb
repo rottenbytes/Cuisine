@@ -6,7 +6,7 @@ require "json"
 require "base64"
 require "tire"
 
-stomp_host="10.251.12.18"
+stomp_host="10.14.1.202"
 stomp_user="chef"
 stomp_pass="ue3Eir0a"
 stomp_queue="/queue/chef"
