@@ -4,9 +4,10 @@ require "rubygems"
 require "stomp"
 require "json"
 require "base64"
+require "time"
 require "tire"
 
-stomp_host="10.14.1.202"
+stomp_host="10.251.12.22"
 stomp_user="chef"
 stomp_pass="ue3Eir0a"
 stomp_queue="/queue/chef"
@@ -27,9 +28,9 @@ cnx.subscribe(stomp_queue, { :ack => :client }) do |data|
     create
     
     store :nodename => infos[:nodename], 
-          :elapsed_time => infos[:elapsed_time], 
-          :start_time => infos[:start_time],
-          :end_time => infos[:end_time],
+          :elapsed_time => infos[:elapsed_time],
+          :start_time => infos[:start_time].strftime("%Y/%m/%d %H:%M:%S"),
+          :end_time => infos[:end_time].strftime("%Y/%m/%d %H:%M:%S"),
           :updated_resources => infos[:updated_resources]
           
     refresh

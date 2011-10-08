@@ -7,14 +7,6 @@ require "cuisine/elasticsearch"
 
 __DIR__ = File.expand_path(File.dirname(__FILE__))
 
-#def latest_runs(nb)
-#  s=Tire.search do
-#    filter :limit => "value" => nb
-#  end
-#  
-#  return s
-#end
-
 set :public, __DIR__ + '/public'
 set :views,  __DIR__ + '/templates'
 
@@ -24,9 +16,8 @@ end
 
 
 get "/" do
-  @latest = search_limited(15)
-  puts @latest.inspect
-  
+  #@latest = search_limited(15)
+  #puts @latest.inspect
   haml :index
 end
 
