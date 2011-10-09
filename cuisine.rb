@@ -23,6 +23,24 @@ get "/search" do
   haml :search
 end
 
+post "/search" do
+  puts params.inspect
+  criterias = {}
+  criterias[:string] = {}
+  
+  if params[:chk_nodename] 
+    criterias[:string][:nodename] = params[:nodename]
+  end
+  
+  if params[:chk_updated_resources] 
+    criterias[:string][:updated_resources] = params[:updated_resources]
+  end
+
+  @search_params=criterias  
+  @results = es_search_criterias(criterias)
+  haml :search
+end
+
 get "/about" do
   haml :about
 end

@@ -18,16 +18,16 @@
     %div{:class => "modal-footer"}
       %a{:href => "#", :class => "btn alert close"} OK
 
-%div{:class => "content"}
-  %div{:class => "row"}
-    %div{:class => "span10"}
-      %h2
-        The #{@latest.count} latest runs
-      - @latest.each do |run|
-        - run_id = run[:id]
-        - nodename = run[:nodename]
-        - ago = (Time.now.to_i - (Time.parse(run[:end_time])).to_i) / 60
-        %li
-          #{nodename} (#{ago} minutes ago) - |
-          %a{:"data-controls-modal" => run_id, :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
+
+%div{:class => "row"}
+  %div{:class => "span10"}
+    %h2
+      The #{@latest.count} latest runs
+    - @latest.each do |run|
+      - run_id = run[:id]
+      - nodename = run[:nodename]
+      - ago = (Time.now.to_i - (Time.parse(run[:end_time])).to_i) / 60
+      %li
+        #{nodename} (#{ago} minutes ago) - |
+        %a{:"data-controls-modal" => run_id, :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
 

@@ -26,15 +26,20 @@
         %div{:class => "container"}
           %a{:class => "brand", :href => "#"} Cuisine
           %ul{:class => "nav"}
-            %li{:class => "active"}
+            %li
+              /{:class => "active"}
               %a{:href => "/"} Hot stuff
             %li
               %a{:href => "/search"} Search
             %li
               %a{:href => "/about"} About
               
-      %div{:class => "container"}
-        = yield
+    %div{:class => "container"}
+      %div{:class => "content"}
+        %div{:class => "page-header"}
+          %h1
+            Invisible CSS !
+      = yield
 
       %footer
         %p{:align => "center"} &copy; Rottenbytes 2011

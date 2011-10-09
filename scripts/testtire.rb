@@ -16,7 +16,17 @@ require "tire"
 #puts s2.inspect
 
 s=Tire.search 'chef_reports' do
-  query { string "nodename:*" }
+  criterias = {}
+  criterias[:string] = {}
+  criterias[:string][:nodename] = "*" 
+  criterias[:string][:updated_resources] ="*stomp*"
+  
+  str_args=[]
+  criterias[:string].each_pair { |k,v| str_args.push "#{k}:#{v}" }
+
+  str_query=str_args.join(" AND ")
+
+  query { string str_query }
   sort { by :start_time, "desc" }
   size 5
 end

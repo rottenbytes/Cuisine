@@ -1,0 +1,61 @@
+%h3
+  Search into indexed data
+
+- if @search_params then
+  - nodename_v = @search_params[:string][:nodename]
+  - updated_resources_v = @search_params[:string][:updated_resources]
+
+%form{:method => "post"}
+  %div{:class => "clearfix"}
+    %label{:for => "nodename"}
+      Node name
+    %div{:class => "input"}
+      %div{:class => "inline-inputs"}
+        %input{:class => "large", :id => "nodename", :name => "nodename", :value => nodename_v, :size => "40", :type => "text"}
+        %input{:type=>"checkbox", :name => "chk_nodename", :id => "", :value => "true"}
+          
+  %div{:class => "clearfix"}
+    %label{:for => "updated_resources"}
+      Resource
+    %div{:class => "input" }
+      %div{:class => "inline-inputs"}
+        %input{:class => "large", :id => "updated_resources", :name => "updated_resources", :value => updated_resources_v,:size => "40", :type => "text"}
+        %input{:type=>"checkbox", :name => "chk_updated_resources", :id => "", :value => "true", :checked => "checked" }
+      
+  %div{:class => "clearfix"}
+    %label{:for => "timerange"}
+      Time range
+    %div{:class => "input"}
+      %div{:class => "inline-inputs"}
+        %input{:class => "small", :type => "text", :value => "Month day, Year"}
+        %input{:class => "mini", :type => "text", :value => "12:00am" }
+        to
+        %input{:class => "small", :type => "text", :value => "May 8, 2011"}
+        %input{:class => "mini", :type => "text", :value => "11:59pm"}
+
+        %input{:type=>"checkbox", :name => "chk_resourcename", :id => "", :value => "true"}
+
+  %div{:class => "clearfix"}
+    %div{:class => "input"}
+      %input{:type => "submit", :class =>"primary", :value => "search !"}
+  
+  %span{:class => "help-inline"}
+    Tick the checkbox for each criteria you want to include
+
+- if @results then
+  - if @results.empty? then
+    %div{:class => "alert-message block-message warning"}
+      ho noes ! no results
+  - else
+    %h4
+      Your search returned #{@results.count} result(s)
+    %div{:class => "content"}
+      - @results.each do |run|
+        %li
+          at |
+          %strong
+            #{run[:start_time]}
+          on |
+          %strong 
+            #{run[:nodename]} |
+          \- details
