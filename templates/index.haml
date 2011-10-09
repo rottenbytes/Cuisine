@@ -6,15 +6,15 @@
     %div{:class => "modal-body"}
       %h4 
         Modified resources :
-        %p
         - if run[:updated_resources].empty? then
-          No resources updated
+          %span{:class => "notice label"} No resources updated
         - else
+        %p
         - run[:updated_resources].each do |resource|
           %li
             #{resource}
       %h4
-        Run duration : #{run[:elapsed_time]}s
+        Run duration : #{sprintf("%.2f", run[:elapsed_time])}s
     %div{:class => "modal-footer"}
       %a{:href => "#", :class => "btn alert close"} OK
 
@@ -22,7 +22,7 @@
   %div{:class => "row"}
     %div{:class => "span10"}
       %h2
-        Latest runs
+        The #{@latest.count} latest runs
       - @latest.each do |run|
         - run_id = run[:id]
         - nodename = run[:nodename]
@@ -31,9 +31,3 @@
           #{nodename} (#{ago} minutes ago) - |
           %a{:"data-controls-modal" => run_id, :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
 
-    %div{:class => "span4"}
-      %h3
-        Various statistics
-      %li foo
-      %li bar
-      %li baz
