@@ -18,15 +18,10 @@ require "tire"
 s=Tire.search 'chef_reports' do
   query { string "nodename:*" }
   sort { by :start_time, "desc" }
+  size 5
 end
 
-puts ""
-puts ""
-puts s.inspect
-puts ""
-puts ""
 
-s.results.each do |rslt|
-  puts rslt.to_hash.inspect
-  puts ""
-end
+x=s.results.map { |rslt| rslt.to_hash }
+
+puts x.inspect

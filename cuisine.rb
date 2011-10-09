@@ -14,10 +14,8 @@ template :layout do
   File.read('templates/layout.haml')
 end
 
-
 get "/" do
-  #@latest = search_limited(15)
-  #puts @latest.inspect
+  @latest = es_search_limited(5)
   haml :index
 end
 

@@ -1,11 +1,13 @@
 require "rubygems"
 require "tire"
 
-def search_limited(nb=15)
+def es_search_limited(nb=15)
   s=Tire.search do
     query { string "nodename:*" }
-    #  sort { by "start_time", 'desc' }
+    sort { by :start_time, 'desc' }
+    size nb
   end
 
-  return s.results
+  return s.results.map { |rslt| rslt.to_hash }
+
 end
