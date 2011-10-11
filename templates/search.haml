@@ -4,6 +4,7 @@
 - if @search_params then
   - nodename_v = @search_params[:string][:nodename]
   - updated_resources_v = @search_params[:string][:updated_resources]
+  - diffs_v = @search_params[:string][:diffs]
 
 %form{:method => "post"}
   %div{:class => "clearfix"}
@@ -19,8 +20,18 @@
       Resource
     %div{:class => "input" }
       %div{:class => "inline-inputs"}
-        %input{:class => "large", :id => "updated_resources", :name => "updated_resources", :value => updated_resources_v,:size => "40", :type => "text"}
+        %input{:class => "large", :id => "updated_resources", :name => "updated_resources", :value => updated_resources_v, :size => "40", :type => "text"}
         %input{:type=>"checkbox", :name => "chk_updated_resources", :id => "", :value => "true", :checked => "checked" }
+
+  %div{:class => "clearfix"}
+    %label{:for => "diffs"}
+      Diffs
+    %div{:class => "input" }
+      %div{:class => "inline-inputs"}
+        %input{:class => "large", :id => "diffs", :name => "diffs", :value => diffs_v, :size => "40", :type => "text"}
+        %input{:type=>"checkbox", :name => "chk_diffs", :id => "", :value => "true" }
+
+
       
   %div{:class => "clearfix"}
     %label{:for => "timerange"}

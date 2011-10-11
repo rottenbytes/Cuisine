@@ -27,7 +27,7 @@ get "/search" do
 end
 
 post "/search" do
-  puts params.inspect
+#  puts params.inspect
   criterias = {}
   criterias[:string] = {}
   
@@ -37,6 +37,10 @@ post "/search" do
   
   if params[:chk_updated_resources] 
     criterias[:string][:updated_resources] = params[:updated_resources]
+  end
+
+  if params[:chk_diffs] 
+    criterias[:string][:diffs] = params[:diffs]
   end
 
   @search_params=criterias  

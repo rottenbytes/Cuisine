@@ -14,10 +14,8 @@
           %li
             #{resource}
             - unless run[:diffs][resource.to_sym].nil?
-              %pre{:class => "pretty-print"}
-                - diff = run[:diffs][resource.to_sym]
-                #{diff}
-            
+              %pre                                 |
+                #{run[:diffs][resource.to_sym]}    |
       %h4
         Run duration : #{sprintf("%.2f", run[:elapsed_time])}s
     %div{:class => "modal-footer"}
