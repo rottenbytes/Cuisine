@@ -12,6 +12,7 @@ Tire.index "chef_reports" do
         :start_time => { :type => "date", :format => "yyyy-MM-dd HH:mm:ss" },
         :end_time => { :type => "date", :format => "yyyy-MM-dd HH:mm:ss" },
         :updated_resources => { :type => "string" },
+        :diffs => { :type => "string" },
       }
     }
   

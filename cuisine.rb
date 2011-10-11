@@ -2,6 +2,8 @@
 
 require "rubygems"
 require "sinatra"
+require "haml"
+
 require "tire"
 require "cuisine/elasticsearch"
 
@@ -16,6 +18,7 @@ end
 
 get "/" do
   @latest = es_search_limited(5)
+  puts @latest.inspect
   haml :index
 end
 
