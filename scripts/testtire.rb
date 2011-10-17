@@ -1,38 +1,48 @@
 require "rubygems"
 require "tire"
 
-s=Tire.search 'chef_reports' do
+def map2hash(s)
+  rslt=s.results.map { |rslt| rslt.to_hash }
+
+  # turn the diff into a hash
+  for i in 0..rslt.count-1 do
+    rslt_hash = {}
+    rslt[i][:diffs].each { |elt| rslt_hash[elt[0]] = elt[1] }
+    rslt[i][:diffs]=rslt_hash
+  end
+
+  return rslt
+
+end
+
+s=Tire.search "chef_reports" do
   criterias = {}
   criterias[:string] = {}
-  criterias[:string][:nodename] = "*" 
-  criterias[:string][:updated_resources] ="*resolv*"
+  criterias[:string][:nodename] = "test1.fotolia.loc" 
+  criterias[:string][:updated_resources] ="*nagios*"
+  criterias[:string][:diffs] = "*mem*"
   
   str_args=[]
   criterias[:string].each_pair { |k,v| str_args.push "#{k}:#{v}" }
 
   str_query=str_args.join(" AND ")
 
+  puts "[+] string query => #{str_query}"
+
+# query { string "nodename:vbo* AND diffs:*foo*" }
   query { string str_query }
   sort { by :start_time, "desc" }
   size 5
 end
 
 
-x=s.results.map { |rslt| rslt.to_hash }
+#x=s.results.map { |rslt| rslt.to_hash }
 
-puts "------------------------------------"
-x.each do |y|
-  puts y.inspect
-  puts ""
-end
-puts "------------------------------------"
+#for i in 0..x.count-1 do
+#  x[i][:diffs]=x[i][:diffs].to_hash unless x[i][:diffs].nil?
+#end
 
-for i in 0..x.count-1 do
-  puts i
-  x[i][:diffs]=x[i][:diffs].to_hash unless x[i][:diffs].nil?
-end
-
-puts "####################################"
+puts ""
+#puts s.count
+x=map2hash(s)
 puts x.inspect
-puts "####################################"
-

@@ -22,21 +22,19 @@ Tire::Configuration.url(es_url)
 
 cnx.subscribe(stomp_queue, { :ack => :client }) do |data|
   infos=Marshal.load(Base64.decode64(data.body))
-  puts infos.inspect 
+  puts infos.inspect
   # Insert into elasticsearch
   Tire.index es_index do
-    create
-    
-    store :nodename => infos[:nodename], 
+    store :nodename => infos[:nodename],
           :elapsed_time => infos[:elapsed_time],
           :start_time => infos[:start_time].strftime("%Y/%m/%d %H:%M:%S"),
           :end_time => infos[:end_time].strftime("%Y/%m/%d %H:%M:%S"),
           :updated_resources => infos[:updated_resources],
           :diffs => infos[:diffs]
-          
+
     refresh
   end
-  
+
   cnx.acknowledge data
 end
 
