@@ -1,1 +1,19 @@
-Nothing here ATM
+%div{:class=>"row"}
+  %div{:class => "span10"}
+    %h2
+      About Cuisine
+    %p
+      Cuisine is little dashboard to track changes made by chef.
+    %p
+      It is written by me, Nicolas Szalay (nico@rottenbytes.info). Its primary use was for fotolia, as its my workplace :) The whole stack relies on several technologies :
+      %ul
+        %li
+          Chef report handlers, and in particular the asynchronous one I wrote
+        %li
+          RabbitMQ (or any stomp broker, pick your favorite)
+        %li
+          Sinatra (to run this web thing)
+        %li
+          Twitter's bootstrap because I definitely hate CSS
+        %li
+          Elasticsearch, for indexing and storing informations

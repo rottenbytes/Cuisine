@@ -69,4 +69,6 @@
           on |
           %strong 
             #{run[:nodename]} |
-          \- details
+          -                   | 
+          %a{:href => "/run/#{run[:id]}"}
+            details

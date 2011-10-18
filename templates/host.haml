@@ -1,0 +1,31 @@
+%div{:class => "row" }
+  %div{:class => "span10" }
+    %h2
+      #{@infos[0][:nodename]}
+
+    %h3
+      Various informations
+    %div
+      %strong
+        Latest run : 
+      #{@infos[0][:start_time]}
+    %div
+      %strong
+        Last run changes :
+      - if @infos[0][:updated_resources].empty? then
+      %span{:class => "notice label"} No resources updated
+      - else
+        %span
+        %ul
+          - @infos[0][:updated_resources].each do |res|
+            %li
+              #{res}
+
+    %div
+      %strong
+        Short history :
+      %ul
+      - for i in 0..4 do
+        - if @infos[i][:start_time] then
+          %li
+            #{@infos[i][:start_time]}

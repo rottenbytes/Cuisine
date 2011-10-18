@@ -15,6 +15,16 @@ def map2hash(s)
 
 end
 
+s=Tire.search do
+  query do
+    ids [ "XEgJmWhYSiigoEUS_K3DUg" ], "document"
+  end
+end
+
+puts s.inspect
+
+exit 0
+
 s=Tire.search "chef_reports" do
   criterias = {}
   criterias[:string] = {}

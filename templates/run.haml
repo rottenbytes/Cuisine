@@ -1,0 +1,40 @@
+%div{:class => "row" }
+  %div{:class => "span10" }
+  - if @infos then
+    %h2
+      Run 
+      #{@infos[:id]}
+
+    %h3
+      Details
+
+    %div
+      %ul
+        %li
+          %strong
+            Host :
+          #{@infos[:nodename]}
+        %li
+          %strong
+            Changes :
+            - if @infos[:updated_resources].empty? then
+            %span{:class => "notice label"} No resources updated
+            - else
+            %ul
+              - @infos[:updated_resources].each do |res|
+                %li
+                  #{res}
+                  - unless @infos[:diffs][res].nil?
+                    %pre                      |
+                      #{@infos[:diffs][res]}  |
+
+        %li
+          %strong
+            Date :
+          #{@infos[:start_time]}
+        %li
+          %strong
+            Duration :
+          #{sprintf("%.2f", @infos[:elapsed_time])}s
+  - else
+    %h3 No such document in ElasticSearch !!

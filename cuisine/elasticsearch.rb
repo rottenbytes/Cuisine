@@ -15,9 +15,9 @@ def map2hash(s)
 
 end
 
-def es_search_limited(nb=15)
+def es_search_limited(nb=15, hostname="*")
   s=Tire.search do
-    query { string "nodename:*" }
+    query { string "nodename:#{hostname}" }
     sort { by :start_time, 'desc' }
     size nb
   end
@@ -36,6 +36,16 @@ def es_search_criterias(criterias, nb=100)
     query { string str_query }
     sort { by :start_time, 'desc' }
     size nb
+  end
+
+  map2hash(s)
+end
+
+def es_get_run(run_id)
+  s=Tire.search do
+    query do
+      ids [ run_id ], "document"
+    end
   end
 
   map2hash(s)
