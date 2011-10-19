@@ -17,8 +17,12 @@ template :layout do
 end
 
 get "/" do
-  @latest = es_search_limited(nb=5,hostname="*")
-  puts @latest.inspect
+  puts params.inspect
+  updatedonly=false
+  if params[:updatedonly] == "true" then
+    updatedonly=true
+  end
+  @latest = es_search_limited(nb=20,hostname="*",filter_updated=updatedonly)
   haml :index
 end
 

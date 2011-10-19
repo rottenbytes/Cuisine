@@ -34,3 +34,9 @@
         #{nodename} (#{ago} minutes ago) - |
         %a{:"data-controls-modal" => run_id, :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"} details
 
+%p
+  %div{:class => "row"}
+    %form{:method => "get"}
+      %input{:type => "checkbox", :name=> "updatedonly", :value => "true"} |
+      Filter out runs with no resources updated                            |
+      %input{:type => "submit", :value => "Go", :class => "btn primary small", :action => "submit"}

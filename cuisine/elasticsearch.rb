@@ -15,10 +15,13 @@ def map2hash(s)
 
 end
 
-def es_search_limited(nb=15, hostname="*")
+def es_search_limited(nb=15, hostname="*",filter_updated=false)
   s=Tire.search do
     query { string "nodename:#{hostname}" }
     sort { by :start_time, 'desc' }
+    if filter_updated then
+      filter :exists, :field => "updated_resources"
+    end
     size nb
   end
 

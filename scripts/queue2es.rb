@@ -7,7 +7,7 @@ require "base64"
 require "time"
 require "tire"
 
-stomp_host="10.251.12.22"
+stomp_host="10.14.1.202"
 stomp_user="chef"
 stomp_pass="ue3Eir0a"
 stomp_queue="/queue/chef"

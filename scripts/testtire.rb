@@ -17,13 +17,22 @@ end
 
 s=Tire.search do
   query do
-    ids [ "XEgJmWhYSiigoEUS_K3DUg" ], "document"
+    string "nodename:vb*"
   end
+  filter :exists, :field => "updated_resources"
+  size 100
 end
 
-puts s.inspect
+puts s.results.count
+s.results.each do |rslt|
+  puts rslt[:updated_resources]
+end
+
+
 
 exit 0
+
+# --------------------------------------------------
 
 s=Tire.search "chef_reports" do
   criterias = {}
@@ -31,7 +40,7 @@ s=Tire.search "chef_reports" do
   criterias[:string][:nodename] = "test1.fotolia.loc" 
   criterias[:string][:updated_resources] ="*nagios*"
   criterias[:string][:diffs] = "*mem*"
-  
+
   str_args=[]
   criterias[:string].each_pair { |k,v| str_args.push "#{k}:#{v}" }
 
