@@ -5,15 +5,27 @@
     %p
       Cuisine is little dashboard to track changes made by chef.
     %p
-      It is written by me, Nicolas Szalay (nico@rottenbytes.info). Its primary use was for fotolia, as its my workplace :) The whole stack relies on several technologies :
+      It is written by me, Nicolas Szalay (nico@rottenbytes.info). Its primary use was for my $DAYJOB at 
+      %a{:href => "http://www.fotolia.com"} fotolia
+      %br
+      The whole stack relies on several technologies :
       %ul
         %li
-          Chef report handlers, and in particular the asynchronous one I wrote
+          %a{:href => "http://wiki.opscode.com/display/chef/Exception+and+Report+Handlers" } Chef report handlers
+          , and in particular 
+          %a{:href => "http://www.rottenbytes.info/2011/07/28/asynchronous-reporting-with-chef/" } the asynchronous one
+          I wrote
         %li
-          RabbitMQ (or any stomp broker, pick your favorite)
+          %a{:href => "http://www.rabbitmq.com/" } RabbitMQ
+          (or any stomp broker, pick your favorite)
         %li
-          Sinatra (to run this web thing)
+          %a{:href => "http://www.sinatrarb.com/" } Sinatra
+          (to run this web thing)
         %li
-          Twitter's bootstrap because I definitely hate CSS
+          %a{:href => "http://twitter.github.com/bootstrap/" } Twitter's bootstrap
+          because I definitely hate CSS
         %li
-          Elasticsearch, for indexing and storing informations
+          %a{:href => "http://www.elasticsearch.org/" } Elasticsearch
+          , for indexing and storing informations
+
+    %p The development is still in an early stage, feel free to send feeback by mail to nico /at/ rottenbytes.info

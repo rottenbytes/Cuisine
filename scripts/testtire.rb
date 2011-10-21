@@ -15,20 +15,17 @@ def map2hash(s)
 
 end
 
+x="*.*"
+
 s=Tire.search do
   query do
-    string "nodename:vb*"
+    string 'nodename:*'
   end
-  filter :exists, :field => "updated_resources"
-  size 100
+
+  size 300
 end
 
 puts s.results.count
-s.results.each do |rslt|
-  puts rslt[:updated_resources]
-end
-
-
 
 exit 0
 
@@ -37,7 +34,7 @@ exit 0
 s=Tire.search "chef_reports" do
   criterias = {}
   criterias[:string] = {}
-  criterias[:string][:nodename] = "test1.fotolia.loc" 
+  criterias[:string][:nodename] = "test1.fotolia.loc"
   criterias[:string][:updated_resources] ="*nagios*"
   criterias[:string][:diffs] = "*mem*"
 

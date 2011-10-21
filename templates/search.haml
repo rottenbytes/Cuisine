@@ -31,20 +31,9 @@
         %input{:class => "large", :id => "diffs", :name => "diffs", :value => diffs_v, :size => "40", :type => "text"}
         %input{:type=>"checkbox", :name => "chk_diffs", :id => "", :value => "true" }
 
-
-      
-  %div{:class => "clearfix"}
-    %label{:for => "timerange"}
-      Time range
-    %div{:class => "input"}
-      %div{:class => "inline-inputs"}
-        %input{:class => "small", :type => "text", :value => "Month day, Year"}
-        %input{:class => "mini", :type => "text", :value => "12:00am" }
-        to
-        %input{:class => "small", :type => "text", :value => "May 8, 2011"}
-        %input{:class => "mini", :type => "text", :value => "11:59pm"}
-
-        %input{:type=>"checkbox", :name => "chk_resourcename", :id => "", :value => "true"}
+  %div{:class => "clearfix"}    
+    %input{:type=>"checkbox", :name => "chk_updatedonly", :id => "", :value => "true"} |
+    Don't show runs with no resources updated
 
   %div{:class => "clearfix"}
     %div{:class => "input"}

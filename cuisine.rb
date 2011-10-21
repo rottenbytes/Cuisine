@@ -17,7 +17,6 @@ template :layout do
 end
 
 get "/" do
-  puts params.inspect
   updatedonly=false
   if params[:updatedonly] == "true" then
     updatedonly=true
@@ -31,10 +30,10 @@ get "/search" do
 end
 
 post "/search" do
-#  puts params.inspect
   criterias = {}
   criterias[:string] = {}
-  
+  criterias[:updatedonly] = false
+
   if params[:chk_nodename] 
     criterias[:string][:nodename] = params[:nodename]
   end
@@ -47,6 +46,10 @@ post "/search" do
     criterias[:string][:diffs] = params[:diffs]
   end
 
+  if params[:chk_updatedonly]
+    criterias[:updatedonly] = true
+  end
+
   @search_params=criterias  
   @results = es_search_criterias(criterias=criterias)
   haml :search
@@ -57,7 +60,6 @@ get "/about" do
 end
 
 get "/host/:hostname" do
-  puts params.inspect
   @infos = es_search_limited(nb=15, hostname=params[:hostname])
   haml :host
 end

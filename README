@@ -1,0 +1,23 @@
+Cuisine is a little chef dashboard to follow changes made by config management.
+
+You will need your nodes to use the asynchronous report handler that lies here : https://github.com/rottenbytes/chef/tree/master/async_handler (see http://www.rottenbytes.info/2011/07/28/asynchronous-reporting-with-chef/ )
+
+Quick & dirty setup
+
+Cuisine :
+  # clone
+  git clone git://github.com/rottenbytes/cuisine.git
+  # init ES stuff
+  ruby ./scripts/init_ES_datas.rb
+  # in a separate term, push reports to ES (modify script to reflect your MQ & ES configs, there are dummy local values inside)
+  ruby ./scripts/queue2es.rb
+  # in an another term
+  ruby cuisine.rb
+
+Elasticsearch :
+  download latest elasticsearch, uncompress it and just run the following command :
+  ./bin/elasticsearch
+
+Note : the project is still in a very early stage, It's using a bare sinatra script. I'm a sysadmin, not a developer, don't except great code and stuff.
+
+I'm nico on freenode IRC, catch me on #chef-hacking for questions.

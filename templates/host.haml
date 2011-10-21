@@ -23,9 +23,12 @@
 
     %div
       %strong
-        Short history :
+        Short history (10 latest runs) :
       %ul
-      - for i in 0..4 do
+      - for i in 0..9 do
         - if @infos[i][:start_time] then
           %li
-            #{@infos[i][:start_time]}
+            #{@infos[i][:start_time]} |
+            - |
+            %a{:href => "/run/#{@infos[i][:id]}"}
+              summary
