@@ -21,3 +21,5 @@ Elasticsearch :
 Note : the project is still in a very early stage, It's using a bare sinatra script. I'm a sysadmin, not a developer, don't except great code and stuff.
 
 I'm nico on freenode IRC, catch me on #chef-hacking for questions.
+
+All this stuff is under BSD License
