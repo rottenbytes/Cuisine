@@ -5,7 +5,7 @@ s=Tire.index "chef_reports" do
   delete
   
   create :mappings => {
-    :pouet => {
+    :chef_reports => {
       :properties => {
         :nodename => { :type => "string", :dynamic => "strict" },
         :elapsed_time => { :type => "double", :dynamic => "strict" },

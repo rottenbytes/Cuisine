@@ -12,17 +12,14 @@ def map2hash(s)
   end
 
   return rslt
-
 end
 
-x="*.*"
+
 
 s=Tire.search do
   query do
-    string 'nodename:*'
+      ids [ "4ELq6VSySZuyCdxFBOVfhw" ], "document"
   end
-
-  size 300
 end
 
 puts s.results.count
