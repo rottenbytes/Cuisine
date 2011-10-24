@@ -1,0 +1,16 @@
+---
+es_url: "http://localhost:9200"
+es_index: "chef_reports"
+
+stomp_host: "a.b.c.d"
+stomp_user: "chef"
+stomp_password: "XXXXXX"
+stomp_port: 6163
+stomp_queue: "/queue/chef"
+
+debug: true
+
+homepage_hosts: 20
+homepage_filter: "*"
+
+results_hosts: 20

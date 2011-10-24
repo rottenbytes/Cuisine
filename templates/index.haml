@@ -13,9 +13,6 @@
         - run[:updated_resources].each do |resource|
           %li
             #{resource}
-            - unless run[:diffs][resource].nil?
-              %pre                          |
-                #{run[:diffs][resource]}    |
       %h4
         Run duration : #{sprintf("%.2f", run[:elapsed_time])}s
     %div{:class => "modal-footer"}

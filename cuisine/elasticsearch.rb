@@ -12,7 +12,6 @@ def map2hash(s)
   end
 
   return rslt
-
 end
 
 def es_search_limited(nb=15, hostname="*",filter_updated=false)
@@ -21,7 +20,6 @@ def es_search_limited(nb=15, hostname="*",filter_updated=false)
   else
     query_str='nodename:"'+hostname+'"'
   end
-
 
   s=Tire.search do
     query { string query_str }
