@@ -7,7 +7,7 @@
       Various informations
     %div
       %strong
-        Latest run : 
+        Latest run :
       #{@infos[0][:start_time]}
     %div
       %strong
@@ -32,3 +32,35 @@
             - |
             %a{:href => "/run/#{@infos[i][:id]}"}
               summary
+    %p
+    %div
+      %strong
+        Last runs time :
+      %p
+      %div{:id => "placeholder", :style=>"width:600px;height:300px;"}
+
+      - graph_coords=[]
+      - times=[]
+      - for i in 0..9 do
+        - if @infos[i][:elapsed_time] then
+          - graph_coords.push "[#{i+1}, #{sprintf("%.1f",@infos[i][:elapsed_time].to_f)}]"
+          - times.push sprintf("%.1f", @infos[i][:elapsed_time]).to_f
+      - graph_points="[#{graph_coords.join(', ')}]"
+  :javascript
+    $(function () {
+      var graphdata = #{graph_points};
+      $.plot($("#placeholder"), [ graphdata ], {
+        series: {
+          lines: { show: true },
+          points: { show: true },
+        },
+        grid: {
+          show: true
+        },
+        yaxis: {
+          min: #{times.min - 1},
+          max: #{times.max + 1},
+          ticks: #{times.count+1}
+        }
+      }    );
+    });
