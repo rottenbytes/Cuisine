@@ -1,3 +1,6 @@
+- nb_runs = @config["host_nb_runs"]
+- if @infos.count < nb_runs
+  - nb_runs = @infos.count-1
 %div{:class => "row" }
   %div{:class => "span10" }
     %h2
@@ -25,7 +28,7 @@
       %strong
         Short history (10 latest runs) :
       %ul
-      - for i in 0..9 do
+      - for i in 0..nb_runs do
         - if @infos[i][:start_time] then
           %li
             #{@infos[i][:start_time]} |
@@ -41,7 +44,7 @@
 
       - graph_coords=[]
       - times=[]
-      - for i in 0..9 do
+      - for i in 0..nb_runs do
         - if @infos[i][:elapsed_time] then
           - graph_coords.push "[#{i+1}, #{sprintf("%.1f",@infos[i][:elapsed_time].to_f)}]"
           - times.push sprintf("%.1f", @infos[i][:elapsed_time]).to_f

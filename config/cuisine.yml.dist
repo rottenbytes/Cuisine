@@ -14,3 +14,5 @@ homepage_hosts: 20
 homepage_filter: "*"
 
 results_hosts: 20
+
+host_nb_runs: 20
