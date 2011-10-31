@@ -26,7 +26,7 @@
 
     %div
       %strong
-        Short history (10 latest runs) :
+        Short history (#{@infos.count} latest runs) :
       %ul
       - for i in 0..nb_runs do
         - if @infos[i][:start_time] then
@@ -38,7 +38,7 @@
     %p
     %div
       %strong
-        Last runs time :
+        Last runs duration, in seconds :
       %p
       %div{:id => "placeholder", :style=>"width:600px;height:300px;"}
 
