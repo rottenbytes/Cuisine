@@ -44,26 +44,77 @@
 
       - graph_coords=[]
       - times=[]
+      - run_ids=""
       - for i in 0..nb_runs do
         - if @infos[i][:elapsed_time] then
           - graph_coords.push "[#{i+1}, #{sprintf("%.1f",@infos[i][:elapsed_time].to_f)}]"
           - times.push sprintf("%.1f", @infos[i][:elapsed_time]).to_f
+          - run_ids+="'#{i+1}': '#{@infos[i][:id]}', "
       - graph_points="[#{graph_coords.join(', ')}]"
   :javascript
     $(function () {
       var graphdata = #{graph_points};
+      var run_ids = { #{run_ids} };
       $.plot($("#placeholder"), [ graphdata ], {
         series: {
           lines: { show: true },
           points: { show: true },
         },
         grid: {
-          show: true
+          show: true,
+          clickable: true,
+          hoverable: true
         },
         yaxis: {
           min: #{times.min - 1},
-          max: #{times.max + 1},
-          ticks: #{times.count+1}
+          max: #{times.max + 1}
+        },
+        xaxis: {
+          tickSize: 1
         }
-      }    );
+      } );
+
+     function showTooltip(x, y, contents) {
+        $('<div id="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #fdd',
+            padding: '2px', 'background-color': '#fee',
+            opacity: 0.80
+        }).appendTo("body").fadeIn(200);
+    }
+
+    var previousPoint = null;
+    $("#placeholder").bind("plothover", function (event, pos, item) {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+
+            if (item) {
+                if (previousPoint != item.dataIndex) {
+                    previousPoint = item.dataIndex;
+
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+
+                    showTooltip(item.pageX, item.pageY,
+                                y + " seconds");
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;
+            }
+        });
+
+            console.log(window.location);
+    $("#placeholder").bind("plotclick", function (event, pos, item) {
+        if (item) {
+            var x = item.datapoint[0];
+            window.location="http://"+window.location.host+"/run/"+run_ids[x];
+        }
+    });
+
     });

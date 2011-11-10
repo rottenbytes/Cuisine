@@ -28,7 +28,9 @@
       - nodename = run[:nodename]
       - ago = (Time.now.to_i - (Time.parse(run[:end_time])).to_i) / 60
       %li
-        #{nodename} (#{ago} minutes ago) - |
+        %a{:href => "/host/#{nodename}" }
+          #{nodename}
+        (#{ago} minutes ago) - |
         %a{:"data-controls-modal" => run_id, :"data-backdrop" => "true", :"data-keyboard" => "true", :class => "danger", :href => "#"}
           quick view
         \-
