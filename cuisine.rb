@@ -10,7 +10,7 @@ require "cuisine/config"
 
 __DIR__ = File.expand_path(File.dirname(__FILE__))
 
-set :public, __DIR__ + '/public'
+set :public_folder, __DIR__ + '/public'
 set :views,  __DIR__ + '/templates'
 
 template :layout do
@@ -19,10 +19,12 @@ end
 
 before do
   @config=load_config("config/cuisine.yml")
+  Tire::Configuration.url(@config["es_url"])
 end
 
 get "/" do
   updatedonly=false
+
   if params[:updatedonly] == "true" then
     updatedonly=true
   end

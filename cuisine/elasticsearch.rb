@@ -1,5 +1,4 @@
 require "rubygems"
-require "tire"
 
 def map2hash(s)
   rslt=s.results.map { |rslt| rslt.to_hash }
