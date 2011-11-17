@@ -1,4 +1,9 @@
-- nb_runs = @config["host_nb_runs"]
+- # ensure we don't go out of bounds
+- if @config["host_nb_runs"] >= @config["results_hosts"] then
+  - nb_runs = @config["results_hosts"]-1
+- else
+  - nb_runs = @config["host_nb_runs"]
+
 - if @infos.count < nb_runs
   - nb_runs = @infos.count-1
 %div{:class => "row" }
@@ -47,9 +52,9 @@
       - run_ids=""
       - for i in 0..nb_runs do
         - if @infos[i][:elapsed_time] then
-          - graph_coords.push "[#{i+1}, #{sprintf("%.1f",@infos[i][:elapsed_time].to_f)}]"
+          - graph_coords.push "[#{(nb_runs+1)-i}, #{sprintf("%.1f",@infos[i][:elapsed_time].to_f)}]"
           - times.push sprintf("%.1f", @infos[i][:elapsed_time]).to_f
-          - run_ids+="'#{i+1}': '#{@infos[i][:id]}', "
+          - run_ids+="'#{(nb_runs+1)-i}': '#{@infos[i][:id]}', "
       - graph_points="[#{graph_coords.join(', ')}]"
   :javascript
     $(function () {
