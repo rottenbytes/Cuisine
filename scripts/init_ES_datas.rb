@@ -1,9 +1,13 @@
 require "rubygems"
 require "tire"
+require "cuisine/config"
 
-s=Tire.index "chef_reports" do
+@config=load_config("config/cuisine.yml")
+Tire::Configuration.url(@config["es_url"])
+
+s=Tire.index @config["es_index"] do
   delete
-  
+
   create :mappings => {
     :chef_reports => {
       :properties => {
@@ -15,7 +19,7 @@ s=Tire.index "chef_reports" do
         :diffs => { :type => "string", :dynamic => "strict" },
       }
     }
-  
+
   }
 
 end
