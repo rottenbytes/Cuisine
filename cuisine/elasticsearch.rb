@@ -13,18 +13,22 @@ def map2hash(s)
   return rslt
 end
 
-def es_search_limited(nb=15, hostname="*",filter_updated=false)
+def es_search_limited(nb=15, hostname="*",filter_updated=false, environment=nil)
   if hostname == "*" then
     query_str="nodename:*"
   else
     query_str='nodename:"'+hostname+'"'
   end
 
+  unless environment.nil?
+    query_str+=" AND environment:#{environment}"
+  end
+
   s=Tire.search do
     query { string query_str }
     sort { by :start_time, 'desc' }
     if filter_updated then
-      filter :exists, :field => "updated_resources"
+      filter :exists, { :field => "updated_resources" }
     end
     size nb
   end
@@ -58,6 +62,8 @@ def es_search_criterias(criterias, nb=100)
     size nb
   end
 
+  puts s.to_curl
+
   map2hash(s)
 end
 
@@ -69,4 +75,17 @@ def es_get_run(run_id)
   end
 
   map2hash(s)
+end
+
+def es_get_environments()
+  environments = Hash.new
+
+  s=Tire.search do
+    facet("environments") { terms :environment  }
+  end
+  s.results.facets["environments"]["terms"].each do |k,v|
+    environments[k["term"]] = k["count"]
+  end
+
+  return environments.sort_by { |k,v| -v }
 end

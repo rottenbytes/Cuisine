@@ -10,9 +10,9 @@
           %span{:class => "notice label"} No resources updated
         - else
         %p
-        - run[:updated_resources].each do |resource|
+        - run[:updated_resources].each do |resource, resource_type|
           %li
-            #{resource}
+            #{resource} (#{resource_type})
       %h4
         Run duration : #{sprintf("%.2f", run[:elapsed_time])}s
     %div{:class => "modal-footer"}

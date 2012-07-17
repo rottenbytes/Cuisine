@@ -21,12 +21,12 @@
               %span{:class => "notice label"} No resources updated
             - else
             %ul
-              - @infos[:updated_resources].each do |res|
+              - @infos[:updated_resources].each do |resource, type|
                 %li
-                  #{res}
-                  - unless @infos[:diffs][res].nil?
-                    %pre                      |
-                      #{@infos[:diffs][res]}  |
+                  #{resource} (#{type})
+                  - unless @infos[:diffs][resource].nil?
+                    %pre                           |
+                      #{@infos[:diffs][resource]}  |
 
         %li
           %strong

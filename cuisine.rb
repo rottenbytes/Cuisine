@@ -20,6 +20,7 @@ end
 before do
   @config=load_config("config/cuisine.yml")
   Tire::Configuration.url(@config["es_url"])
+  @environments = es_get_environments()
 end
 
 get "/" do
@@ -29,6 +30,11 @@ get "/" do
     updatedonly=true
   end
   @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=updatedonly)
+  haml :index
+end
+
+get "/environment/:environment" do
+  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=false,environment=params[:environment])
   haml :index
 end
 
@@ -57,6 +63,11 @@ post "/search" do
     criterias[:updatedonly] = true
   end
 
+  if params[:environment]
+    criterias[:string][:environment] = params[:environment]
+  end
+
+
   @search_params=criterias
   @results = es_search_criterias(criterias=criterias)
   haml :search
@@ -75,3 +86,4 @@ get "/run/:id" do
   @infos = es_get_run(params[:id])[0]
   haml :run
 end
+

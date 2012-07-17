@@ -1,10 +1,10 @@
 !!!
 %%html
   %%head
-    %%title Cuisine ! 
+    %%title Cuisine !
     %link{:rel => "stylesheet", :href => "/bootstrap.min.css"}
- 
-    <!-- Le javascript --> 
+
+    <!-- Le javascript -->
     /%%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"  }
     %%script{:src => "/js/jquery.min.js"  }
     %%script{:src => "/js/bootstrap-modal.js"}
@@ -15,14 +15,14 @@
     %%script{:src => "/js/bootstrap-scrollspy.js"  }
     %%script{:src => "/js/bootstrap-tabs.js"}
     %%script{:src => "/js/jquery.flot.js"}
- 
-    <!-- Le styles --> 
+
+    <!-- Le styles -->
     %link{:href => "/bootstrap.css", :rel => "stylesheet"}
     %link{:href => "/docs/assets/css/docs.css", :rel => "stylesheet"}
     %link{:href => "/docs/assets/js/google-code-prettify/prettify.css", :rel => "stylesheet"}
 
   %body
- 
+
     %div{:class => "topbar"}
       %div{:class => "fill"}
         %div{:class => "container"}
@@ -32,9 +32,18 @@
               %a{:href => "/"} Hot stuff
             %li
               %a{:href => "/search"} Search
+            %li{:class => "dropdown", :id => "menu_environment", 'data-dropdown'.to_sym => "dropdown-toggle"}
+              %a{:href => "#1", 'data-toggle'.to_sym => "dropdown" , :class => "dropdown-toggle" } Environment
+              %ul{:class => "dropdown-menu"}
+                %li
+                  %a{:href => "/"} All
+                - @environments.each do |environment, count|
+                  %li
+                    %a{:href => "/environment/#{environment}"}
+                      #{environment}
             %li
               %a{:href => "/about"} About
-              
+
     %div{:class => "container"}
       %div{:class => "content"}
         %div{:class => "page-header"}

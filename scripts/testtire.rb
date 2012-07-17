@@ -9,20 +9,50 @@ def map2hash(s)
     rslt_hash = {}
     rslt[i][:diffs].each { |elt| rslt_hash[elt[0]] = elt[1] }
     rslt[i][:diffs]=rslt_hash
+
+#    rslt[i][:updated_resources] = rslt[i][:updated_resources].to_hash
+
   end
+
+
 
   return rslt
 end
 
 
 
+#s=Tire.search do
+#  query do
+#      ids [ "ee_301oGQ26Vrnipo0ww5g" ], "document"
+#  end
+#end
+
 s=Tire.search do
-  query do
-      ids [ "4ELq6VSySZuyCdxFBOVfhw" ], "document"
-  end
+  facet("environments") { terms :environment  }
 end
 
-puts s.results.count
+puts s.results.facets["environments"]["terms"].inspect
+puts ""
+puts ""
+x = {}
+s.results.facets["environments"]["terms"].each do |key,value|
+  x[key["term"]] = key["count"]
+end
+
+puts x.inspect
+y =x.sort_by{ |k,v| -v  }
+puts y.inspect
+
+exit 0
+
+x = map2hash(s)
+puts x.inspect
+
+x.each do |r|
+  puts r[:updated_resources].class
+  puts r[:updated_resources].inspect
+
+end
 
 exit 0
 

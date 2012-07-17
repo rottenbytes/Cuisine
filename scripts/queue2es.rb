@@ -25,7 +25,8 @@ cnx.subscribe(config["stomp_queue"], { :ack => :client }) do |data|
           :elapsed_time => infos[:elapsed_time],
           :start_time => infos[:start_time].strftime("%Y/%m/%d %H:%M:%S"),
           :end_time => infos[:end_time].strftime("%Y/%m/%d %H:%M:%S"),
-          :updated_resources => infos[:updated_resources],
+          :updated_resources => infos[:updated_resources].to_a,
+          :environment => infos[:environment],
           :diffs => infos[:diffs]
 
     refresh

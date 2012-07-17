@@ -14,7 +14,7 @@
       %div{:class => "inline-inputs"}
         %input{:class => "large", :id => "nodename", :name => "nodename", :value => nodename_v, :size => "40", :type => "text"}
         %input{:type=>"checkbox", :name => "chk_nodename", :id => "", :value => "true"}
-          
+
   %div{:class => "clearfix"}
     %label{:for => "updated_resources"}
       Resource
@@ -31,14 +31,25 @@
         %input{:class => "large", :id => "diffs", :name => "diffs", :value => diffs_v, :size => "40", :type => "text"}
         %input{:type=>"checkbox", :name => "chk_diffs", :id => "", :value => "true" }
 
-  %div{:class => "clearfix"}    
+  %div{:class => "clearfix"}
+    %label{:for => "environment"}
+      Environment
+    %div{:class => "input"}
+      %div{:class => "inline-inputs"}
+        %select{:name => "environment", :value => "true"} |
+          %option{:value => "*" } All
+          - @environments.each do |environment, count|
+            %option{:value => "#{environment}" }
+              #{environment}
+
+  %div{:class => "clearfix"}
     %input{:type=>"checkbox", :name => "chk_updatedonly", :id => "", :value => "true"} |
     Don't show runs with no resources updated
 
   %div{:class => "clearfix"}
     %div{:class => "input"}
       %input{:type => "submit", :class =>"primary", :value => "search !"}
-  
+
   %span{:class => "help-inline"}
     Tick the checkbox for each criteria you want to include
 
