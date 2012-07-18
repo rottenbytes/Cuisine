@@ -25,7 +25,7 @@ cnx.subscribe(config["stomp_queue"], { :ack => :client }) do |data|
   infos=Marshal.load(Base64.decode64(data.body))
   puts infos.inspect if config["debug"]
   # Insert into pg
-  conn.exec_prepared("insert_run",[ infos[:nodename], infos[:elapsed_time], infos[:start_time].strftime("%Y/%m/%d %H:%M:%S"), infos[:end_time].strftime("%Y/%m/%d %H:%M:%S"), infos[:updated_resources].to_json, infos[:environment], infos[:diffs] ] )
+  conn.exec_prepared("insert_run",[ infos[:nodename], infos[:elapsed_time], infos[:start_time].strftime("%Y/%m/%d %H:%M:%S"), infos[:end_time].strftime("%Y/%m/%d %H:%M:%S"), infos[:updated_resources].to_json, infos[:environment], infos[:diffs].to_json ] )
 
   Tire.index config["es_index"] do
     store :nodename => infos[:nodename],

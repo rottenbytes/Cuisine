@@ -8,6 +8,12 @@ stomp_password: "XXXXXX"
 stomp_port: 6163
 stomp_queue: "/queue/chef"
 
+pg_host: "127.0.0.1"
+pg_port: 5432
+pg_db: "chefreports"
+pg_user: "guest"
+pg_password: "guest"
+
 debug: true
 
 homepage_hosts: 20
