@@ -34,7 +34,13 @@ get "/" do
 end
 
 get "/environment/:environment" do
-  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=false,environment=params[:environment])
+  updatedonly=false
+
+  if params[:updatedonly] == "true" then
+    updatedonly=true
+  end
+
+  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=updatedonly,environment=params[:environment])
   haml :index
 end
 
