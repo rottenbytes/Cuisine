@@ -4,3 +4,5 @@ gem "sinatra"
 gem "haml"
 gem "tire"
 gem "rack"
+gem "json"
+
