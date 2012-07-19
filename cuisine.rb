@@ -24,23 +24,24 @@ before do
 end
 
 get "/" do
-  updatedonly=false
+  @updatedonly=false
 
   if params[:updatedonly] == "true" then
-    updatedonly=true
+    @updatedonly=true
   end
-  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=updatedonly)
+
+  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=@updatedonly)
   haml :index
 end
 
 get "/environment/:environment" do
-  updatedonly=false
+  @updatedonly=false
 
   if params[:updatedonly] == "true" then
-    updatedonly=true
+    @updatedonly=true
   end
 
-  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=updatedonly,environment=params[:environment])
+  @latest = es_search_limited(nb=@config["homepage_hosts"],hostname=@config["homepage_filter"],filter_updated=@updatedonly,environment=params[:environment])
   haml :index
 end
 

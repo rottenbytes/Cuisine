@@ -40,6 +40,6 @@
 %p
   %div{:class => "row"}
     %form{:method => "get"}
-      %input{:type => "checkbox", :name=> "updatedonly", :value => "true"} |
-      Filter out runs with no resources updated                            |
+      %input{:type => "checkbox", :name=> "updatedonly", :value => "true", :checked => @updatedonly } |
+      Filter out runs with no resources updated                                                       |
       %input{:type => "submit", :value => "Go", :class => "btn primary small", :action => "submit"}
