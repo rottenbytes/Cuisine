@@ -1,0 +1,77 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:           cuisine-consumer
+# Required-Start:     $remote_fs $network
+# Required-Stop:      $remote_fs $network
+# Default-Start:      2 3 4 5
+# Default-Stop:       0 1 6
+# Short-Description:  Start a cuisine consumer
+### END INIT INFO
+#
+#
+# cuisine-consumer         Startup script for cuisine-consumer.
+# chkconfig: - 99 02
+# description: starts up cuisine-consumer in daemon mode.
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/cuisine-consumer
+NAME=cuisine-consumer
+DESC=cuisine-consumer
+PIDFILE=/var/run/cuisine_consumer.pid
+CONFIG=/etc/cuisine/cuisine.yml
+
+DAEMON=./cuisine-consumer
+PIDFILE=/var/tmp/cuisine_consumer.pid
+CONFIG=/home/nico/coding/perso/cuisine/config/cuisine.yml
+
+. /lib/lsb/init-functions
+
+test -x $DAEMON || exit 0
+
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+DAEMON_OPTS="-P $PIDFILE -c $CONFIG"
+
+start() {
+  $DAEMON $DAEMON_OPTS
+}
+
+stop() {
+  kill $(cat ${PIDFILE})
+}
+
+case "$1" in
+  start)
+    echo "Starting $DESC " "$NAME"
+    start
+    ;;
+  stop)
+    echo "Stopping $DESC" "$NAME"
+    stop
+    ;;
+  restart)
+    echo  "Restarting $DESC" "$NAME"
+    stop
+    sleep 2
+    start
+    ;;
+  status)
+    pid=$(cat ${PIDFILE})
+    if [ -f /proc/${pid}/status ] ; then
+      echo "Running as PÏD ${pid}"
+      exit 0
+    else
+      echo "Not running"
+      exit 1
+    fi
+    ;;
+  *)
+    N=/etc/init.d/$NAME
+    echo "Usage: $N {start|stop|restart|status}" >&2
+    exit 1
+    ;;
+esac
+
+
+exit 0
+
