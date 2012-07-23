@@ -25,9 +25,9 @@
       - else
         %span
         %ul
-          - @infos[0][:updated_resources].each do |res|
+          - @infos[0][:updated_resources].each do |resource, resource_type|
             %li
-              #{res}
+              #{resource} (#{resource_type})
 
     %div
       %strong
